@@ -1,13 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zean Han's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="个人学术主页 — 请修改本描述" />
+  <title>Your Name — 个人主页</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Welcome to my personal website!</h1>
-    <p>My name is Zean Han and I am an incoming PhD student in HKUST IEDA.</p>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#about">关于</a>
+      <a href="#research">研究</a>
+      <a href="#publications">论文</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ========== 顶部：姓名 + 一句话介绍 ========== -->
+    <section id="hero" class="hero">
+      <h1 class="hero__name">你的名字 / Your Name</h1>
+      <p class="hero__tagline">一句话介绍自己（研究方向、职位或学校）</p>
+      <p class="hero__meta">
+        <span>邮箱：<a href="mailto:you@example.com">you@example.com</a></span>
+        <!-- 可删可增： -->
+        <!-- <span> · GitHub：<a href="https://github.com/yourname">@yourname</a></span> -->
+      </p>
+    </section>
+
+    <!-- ========== 关于 ========== -->
+    <section id="about" class="section">
+      <h2>关于 / About</h2>
+      <p>
+        在这里写一段简介：背景、兴趣、正在做的事。可中英文混排。
+      </p>
+      <ul class="list-inline">
+        <li><strong>兴趣关键词：</strong> queueing theory, scheduling, …</li>
+      </ul>
+    </section>
+
+    <!-- ========== 研究 ========== -->
+    <section id="research" class="section">
+      <h2>研究 / Research</h2>
+      <p>简要描述当前课题；可列表。</p>
+      <ul>
+        <li>课题一：……</li>
+        <li>课题二：……</li>
+      </ul>
+    </section>
+
+    <!-- ========== 论文 / 项目 ========== -->
+    <section id="publications" class="section">
+      <h2>论文与预印本 / Publications</h2>
+      <ol class="pub-list">
+        <li>
+          <span class="pub-title">论文标题</span>
+          <span class="pub-venue">会议或期刊, 年份.</span>
+          [<a href="#">PDF</a>] [<a href="#">代码</a>]
+        </li>
+        <!-- 复制 <li>…</li> 增加条目 -->
+      </ol>
+
+      <h3 class="subsection-title">项目 / Projects</h3>
+      <ul>
+        <li><a href="#">项目名称</a> — 一句话说明</li>
+      </ul>
+    </section>
+
+    <!-- ========== 教育 / 经历（可选） ========== -->
+    <section id="cv" class="section section--optional">
+      <h2>教育 / Education</h2>
+      <ul class="timeline">
+        <li><span class="timeline__date">20xx — 20xx</span> 学位，学校</li>
+      </ul>
+    </section>
+
+    <!-- ========== 联系 ========== -->
+    <section id="contact" class="section">
+      <h2>联系 / Contact</h2>
+      <p>
+        邮箱：<a href="mailto:you@example.com">you@example.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Your Name · 可改版权信息</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

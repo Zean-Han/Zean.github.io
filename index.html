@@ -3,122 +3,512 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Zean Han — PhD student, IEDA, HKUST" />
-  <title>Zean Han — Homepage</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Zean Han — personal homepage" />
+  <title>Zean Han</title>
+  <style>
+    :root {
+      --text: #1f2933;
+      --muted: #667281;
+      --link: #1f4f82;
+      --link-hover: #163d66;
+      --border: #d9e1ea;
+      --bg: #ffffff;
+      --nav-bg: #ffffff;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      --content-max: 64rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    /* Top bar — same sections as https://saikoryan.github.io */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header-inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .site-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .site-name a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .site-name a:hover {
+      color: var(--link);
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .site-nav a {
+      color: var(--muted);
+    }
+
+    .site-nav a:hover {
+      color: var(--link);
+    }
+
+    main {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 2.25rem 1.25rem 4rem;
+    }
+
+    /* Hero — fixed-width photo column (like https://saikoryan.github.io) so text keeps a normal measure */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 17rem;
+      gap: 2.5rem;
+      align-items: start;
+      margin-bottom: 3rem;
+      padding-top: 0.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-text {
+      grid-column: 1;
+      max-width: none;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    /* Hero typography aligned with https://saikoryan.github.io (Georgia h1 + Arial body + tiered meta) */
+    .hero h1 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 3.9rem);
+      line-height: 1.08;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hero .role {
+      margin: 0.3rem 0 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .hero .inst,
+    .hero .advisor {
+      margin: 0.25rem 0 0;
+      font-size: 0.98rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .hero .lead {
+      margin: 1.4rem 0 0;
+      max-width: 42rem;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      font-size: 0.96rem;
+      font-weight: 400;
+    }
+
+    .hero-links a {
+      font-weight: 400;
+    }
+
+    .hero-photo-wrap {
+      grid-column: 2;
+      justify-self: end;
+      position: relative;
+      width: 100%;
+      max-width: 17rem;
+      aspect-ratio: 4 / 5;
+      border-radius: 0.4rem;
+      border: 1px solid var(--border);
+      background: #eef4fa;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-photo-wrap::after {
+      content: "Photo unavailable";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-photo-wrap.loaded::after {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+
+      .hero-photo-wrap {
+        grid-column: 1;
+        justify-self: end;
+        max-width: 15rem;
+      }
+    }
+
+    section.block {
+      margin-bottom: 2.75rem;
+    }
+
+    section.block:last-of-type {
+      margin-bottom: 0;
+    }
+
+    section.block > h2 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--text);
+      display: inline-block;
+    }
+
+    section.block p + p {
+      margin-top: 0.85rem;
+    }
+
+    .interest-list {
+      margin: 1rem 0 1rem 1.35rem;
+    }
+
+    .interest-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-item,
+    .teach-item,
+    .paper-item {
+      margin-bottom: 2rem;
+    }
+
+    .edu-item:last-child,
+    .teach-item:last-child,
+    .paper-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-item h3,
+    .teach-item h3,
+    .paper-item h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-dates,
+    .teach-dates {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-degree {
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-item ul,
+    .teach-item ul {
+      margin-left: 1.35rem;
+      margin-top: 0.35rem;
+    }
+
+    .paper-meta {
+      color: var(--muted);
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .papers-subheading {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 2rem 0 1rem;
+    }
+
+    #papers.block > .papers-subheading:first-of-type {
+      margin-top: 0;
+    }
+
+    .paper-item h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .paper-item h3 a:hover {
+      color: var(--link);
+      text-decoration: underline;
+    }
+
+    .contact-card {
+      margin-top: 0.5rem;
+    }
+
+    .contact-card .label {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer-bar {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer-bar a {
+      font-weight: 600;
+    }
+
+    code {
+      font-size: 0.88em;
+      background: #eee;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#publications">Publications</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="site-header-inner">
+      <div class="site-name"><a href="#">Zean Han</a></div>
+      <nav class="site-nav" aria-label="Section navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#education">Education</a>
+        <a href="#papers">Papers</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section id="hero" class="hero">
-      <h1 class="hero__name">Zean Han</h1>
-      <p class="hero__tagline">Ph.D. student, IEDA, HKUST</p>
-      <p class="hero__meta">
-        <span><a href="mailto:zeanhan01@gmail.com">zeanhan01@gmail.com</a></span>
-      </p>
-    </section>
-
-    <!-- ========== About（简介）========== -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>Welcome to my homepage.</p>
-
-      <p>
-        My name is <strong>Zean Han</strong>, a Ph.D. student in the Department of Industrial Engineering and Decision Analytics (IEDA), HKUST.
-        I am fortunate to be advised by
-        <a href="https://epi-one.github.io/#team">Prof. Jiheng Zhang</a>, Department Head and Full Professor in IEDA.
-        I received my M.Phil. in Mathematics from The Chinese University of Hong Kong (CUHK).
-      </p>
-
-      <p>
-        My research sits at the intersection of statistics, operations research, and machine learning.
-        In particular, I focus on (1) queueing models and control for improving LLM inference efficiency, and
-        (2) sample-efficient reinforcement learning algorithms.
-      </p>
-
-      <p>
-        You can reach me at <a href="mailto:zeanhan01@gmail.com">zeanhan01@gmail.com</a>.
-      </p>
-    </section>
-
-    <!-- ========== Publications（紧接在 About 下面；复制 <article class="paper"> 增加一篇）========== -->
-    <section id="publications" class="section">
-      <h2>Publications</h2>
-      <p class="section-note">Synced from your CV (Desktop/个人资料). Preprints &amp; under review listed first.</p>
-
-      <div class="papers">
-        <article class="paper">
-          <p class="paper__title">
-            <a href="https://arxiv.org/abs/2602.02987">Large-Scale LLM Inference with Heterogeneous Workloads: Prefill-Decode Contention and Asymptotically Optimal Control</a>
-          </p>
-          <p class="paper__meta">
-            <span class="paper__authors">Ruihan Lin, Zezhen Ding, <strong>Zean Han</strong>, Jiheng Zhang</span>
-            <span class="paper__venue">Under review. Preprint, February 2026.</span>
-          </p>
-          <p class="paper__links">
-            <a href="https://arxiv.org/pdf/2602.02987">PDF</a>
-            <a href="https://arxiv.org/abs/2602.02987">arXiv</a>
-          </p>
-        </article>
-
-        <article class="paper">
-          <p class="paper__title">Learning to Price and Stock Under Contextual and Censored Demand</p>
-          <p class="paper__meta">
-            <span class="paper__authors">Joint work with Prof. Xueping Gong and Prof. Jiheng Zhang.</span>
-            <span class="paper__venue">Under review.</span>
-          </p>
-        </article>
-
-        <article class="paper">
-          <p class="paper__title">
-            <a href="https://openreview.net/forum?id=68HSwzPBHx">VoCAPTER: Voting-based Pose Tracking for Category-level Articulated Object via Inter-frame Priors</a>
-          </p>
-          <p class="paper__meta">
-            <span class="paper__authors">Li Zhang*, <strong>Zean Han</strong>*, Yan Zhong, Qiaojun Yu, Xingyu Wu, Xue Wang, Rujing Wang (*equal contribution)</span>
-            <span class="paper__venue">Proceedings of the 32nd ACM International Conference on Multimedia (ACM MM&nbsp;&rsquo;24), Melbourne, Australia, October 2024.</span>
-          </p>
-          <p class="paper__links">
-            <a href="https://openreview.net/forum?id=68HSwzPBHx">OpenReview</a>
-          </p>
-        </article>
+    <section class="hero" aria-labelledby="hero-name">
+      <div class="hero-text">
+        <h1 id="hero-name">Zean Han</h1>
+        <!-- 按实际情况修改职位 / 学校 -->
+        <p class="role">Ph.D. Student at HKUST</p>
+        <p class="inst">Hong Kong University of Science and Technology</p>
+        <p class="advisor">Advised by Jiheng Zhang</p>
+        <p class="lead">
+          I work on the intersection of theory and industrial applications of modern AI, trying to bring learning theory to real-world applications.
+        </p>
+        <div class="hero-links">
+          <a href="#research">Research</a>
+          <a href="#papers">Papers</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <!-- 与同目录照片文件名一致 -->
+        <img
+          class="hero-photo"
+          src="IMG_0350.jpg"
+          width="220"
+          height="275"
+          alt="Portrait of Zean Han"
+          loading="lazy"
+          onload="this.closest('.hero-photo-wrap').classList.add('loaded')"
+          onerror="this.style.display='none'"
+        />
       </div>
     </section>
 
-    <!-- ========== Research 主题与项目（论文列表在 Publications）========== -->
-    <section id="research" class="section">
-      <h2>Research</h2>
+    <section id="about" class="block" aria-labelledby="about-h">
+      <h2 id="about-h">About Me</h2>
+      <!-- 参照 https://saikoryan.github.io 的多段自我介绍结构；按需改写 -->
       <p>
-        Queueing approaches to LLM inference; reinforcement learning algorithms and theory.
+        I am a Ph.D. student in Industrial Engineering and Decision Analytics at the Hong Kong University of Science and Technology, where I am fortunate to be supervised by Prof. Jiheng Zhang, head and full professor of the department.
+        My research develops theory and algorithms for real-world scenarios including LLM inference and offline-to-online learning.
+        I am also interested in applying learning theory to management problems such as inventory management and dynamic pricing.
+        My work often leverages tools from queueing theory, reinforcement learning, and optimization to study how complex service and decision systems behave under uncertainty.
       </p>
+      <p>
+        Before coming to HKUST, I received my M.Phil degree in Pure Mathematics from the Chinese University of Hong Kong, where I spent two wonderful years working on geometric representation theory.
+        I used to enjoy considering all kinds of geometric problems and trying to find the underlying algebraic structures.
+        I worked on perverse sheaves and hypertoric varieties there. I am keen in running, watching movies and classical guitar.
+      </p>
+    </section>
 
-      <h3 class="subsection-title">Projects</h3>
-      <ul class="simple-list">
-        <li><a href="https://github.com/Zean-Han">GitHub</a> — code and repos.</li>
+    <section id="research" class="block" aria-labelledby="research-h">
+      <h2 id="research-h">Research Interest</h2>
+      <ul class="interest-list">
+        <li>Efficient LLM Inference</li>
+        <li>Offline-to-Online Learning</li>
+        <li>Dynamic Pricing and Revenue Management</li>
       </ul>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
       <p>
-        Email: <a href="mailto:zeanhan01@gmail.com">zeanhan01@gmail.com</a>
+        Broadly, I try to optimize decision systems under uncertainty using queueing theory, reinforcement learning, and optimization. I am also drawn to AI research which does not involve too much theoretical analysis.
       </p>
     </section>
+
+    <section id="education" class="block" aria-labelledby="education-h">
+      <h2 id="education-h">Education</h2>
+
+      <article class="edu-item">
+        <h3>Hong Kong University of Science and Technology</h3>
+        <p class="edu-dates">2025 – 2028 (expected)</p>
+        <!-- 核对入学年份与预期毕业年份 -->
+        <p class="edu-degree">Ph.D. in Industrial Engineering and Decision Analytics</p>
+        <ul>
+          <li>Advisor: Prof. Jiheng Zhang</li>
+        </ul>
+      </article>
+
+      <article class="edu-item">
+        <h3>The Chinese University of Hong Kong</h3>
+        <p class="edu-dates">2023 – 2025</p>
+        <p class="edu-degree">M.Phil in Pure Mathematics</p>
+        <ul>
+          <li>Research focus: geometric representation theory</li>
+          <li>GPA: 3.81 / 4.0</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="papers" class="block" aria-labelledby="papers-h">
+      <h2 id="papers-h">Papers</h2>
+
+      <p class="papers-subheading">Published</p>
+
+      <article class="paper-item">
+        <h3>
+          VoCAPTER: Voting-based Pose Tracking for Category-level Articulated Object via Inter-frame Priors
+        </h3>
+        <p>Li Zhang*, Zean Han*, Yan Zhong, Qiaojun Yu, Xingyu Wu, Xue Wang, Rujing Wang (*equal contribution)</p>
+        <p class="paper-meta">ACM International Conference on Multimedia (ACM MM), 2024 · Melbourne, Australia</p>
+      </article>
+
+      <p class="papers-subheading">Working papers</p>
+
+      <article class="paper-item">
+        <h3>
+          <a href="https://arxiv.org/abs/2604.24016" target="_blank" rel="noopener noreferrer">
+            Geometry-Aware Offline-to-Online Learning in Linear Contextual Bandits
+          </a>
+        </h3>
+        <p>Zean Han, Ruihan Lin, Zezhen Ding, and Jiheng Zhang</p>
+        <p class="paper-meta">arXiv preprint · <a href="https://arxiv.org/abs/2604.24016" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2604.24016</a></p>
+      </article>
+
+      <article class="paper-item">
+        <h3>
+          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">
+            Large-Scale LLM Inference with Heterogeneous Workloads: Prefill-Decode Contention and Asymptotically Optimal Control
+          </a>
+        </h3>
+        <p>Ruihan Lin, Zean Han, Zezhen Ding, and Jiheng Zhang</p>
+        <p class="paper-meta">
+          Major revision, <em>Management Science</em> · arXiv ·
+          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2602.02987</a>
+        </p>
+      </article>
+
+      <article class="paper-item">
+        <h3>Learning to price and stock under contextual and censored demand</h3>
+        <p>Zean Han, Zezhen Ding, and Jiheng Zhang</p>
+        <p class="paper-meta">To appear in IJCAI 2026</p>
+      </article>
+    </section>
+
+    <section id="contact" class="block" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="contact-card">
+        <p class="label">Get in touch</p>
+        <p>Email: <a href="mailto:morphismtalking@outlook.com">morphismtalking@outlook.com</a></p>
+        <p>Hong Kong University of Science and Technology</p>
+      </div>
+    </section>
+
+    <div class="footer-bar">
+      <a href="#">Top</a>
+      <span style="margin-left:1rem;color:var(--muted);font-weight:400;">· Hosted on GitHub Pages</span>
+    </div>
   </main>
-
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Zean Han</p>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

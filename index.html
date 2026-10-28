@@ -228,6 +228,13 @@
 
     section.block {
       margin-bottom: 2.75rem;
+      scroll-margin-top: 5rem;
+    }
+
+    @media (max-width: 600px) {
+      section.block {
+        scroll-margin-top: 7rem;
+      }
     }
 
     section.block:last-of-type {
@@ -300,6 +307,11 @@
       font-size: 0.95rem;
     }
 
+    .paper-summary {
+      margin-top: 0.45rem;
+      line-height: 1.55;
+    }
+
     .papers-subheading {
       font-family: var(--font-sans);
       font-size: 0.88rem;
@@ -362,7 +374,6 @@
         <a href="#research">Research</a>
         <a href="#education">Education</a>
         <a href="#papers">Papers</a>
-        <a href="#teaching">Teaching</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -373,11 +384,11 @@
       <div class="hero-text">
         <h1 id="hero-name">Zean Han</h1>
         <!-- 按实际情况修改职位 / 学校 -->
-        <p class="role">Ph.D. Student at HKUST</p>
+        <p class="role">Ph.D. Candidate at HKUST</p>
         <p class="inst">Hong Kong University of Science and Technology</p>
         <p class="advisor">Advised by Jiheng Zhang</p>
         <p class="lead">
-          I work on the intersection of theory and industrial applications of modern AI, trying to bring learning theory to real-world applications.
+          I work on efficient LLM inference, statistical learning, and sequential decision-making, developing theoretically grounded algorithms that improve the efficiency and reliability of modern AI systems.
         </p>
         <div class="hero-links">
           <a href="#research">Research</a>
@@ -403,15 +414,15 @@
       <h2 id="about-h">About Me</h2>
       <!-- 参照 https://saikoryan.github.io 的多段自我介绍结构；按需改写 -->
       <p>
-        I am a Ph.D. student in Industrial Engineering and Decision Analytics at the Hong Kong University of Science and Technology, where I am fortunate to be supervised by Prof. Jiheng Zhang, head and full professor of the department.
+        I am a Ph.D. candidate in Industrial Engineering and Decision Analytics at the Hong Kong University of Science and Technology, where I am fortunate to be supervised by Prof. Jiheng Zhang, head and full professor of the department.
         My research develops theory and algorithms for real-world scenarios including LLM inference and offline-to-online learning.
         I am also interested in applying learning theory to management problems such as inventory management and dynamic pricing.
         My work often leverages tools from queueing theory, reinforcement learning, and optimization to study how complex service and decision systems behave under uncertainty.
       </p>
       <p>
-        Before coming to HKUST, I received my M.Phil degree in Pure Mathematics from the Chinese University of Hong Kong, where I spent two wonderful years working on geometric representation theory.
-        I used to enjoy considering all kinds of geometric problems and trying to find the underlying algebraic structures.
-        I worked on perverse sheaves and hypertoric varieties there. I am keen in running, watching movies and classical guitar.
+        Before joining HKUST, I received an M.Phil. in Pure Mathematics from the Chinese University of Hong Kong, where I studied geometric representation theory.
+        My work focused on perverse sheaves and hypertoric varieties, motivated by the connections between geometric problems and their underlying algebraic structures.
+        Outside research, I enjoy running, watching films, and playing classical guitar.
       </p>
     </section>
 
@@ -423,7 +434,7 @@
         <li>Dynamic Pricing and Revenue Management</li>
       </ul>
       <p>
-        Broadly, I try to optimize decision systems under uncertainty using queueing theory, reinforcement learning, and optimization. I am also drawn to AI research which does not involve too much theoretical analysis.
+        Broadly, I study decision systems under uncertainty using queueing theory, reinforcement learning, and optimization. I am particularly interested in translating theoretically grounded methods into efficient and empirically validated AI systems.
       </p>
     </section>
 
@@ -454,15 +465,23 @@
     <section id="papers" class="block" aria-labelledby="papers-h">
       <h2 id="papers-h">Papers</h2>
 
-      <p class="papers-subheading">Published</p>
+      <p class="papers-subheading">Efficient LLM Systems</p>
 
       <article class="paper-item">
         <h3>
-          <a href="https://doi.org/10.1145/3664647.3681131" target="_blank" rel="noopener noreferrer">VoCAPTER: Voting-based Pose Tracking for Category-level Articulated Object via Inter-frame Priors</a>
+          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">
+            Large-Scale LLM Inference with Heterogeneous Workloads: Prefill-Decode Contention and Asymptotically Optimal Control
+          </a>
         </h3>
-        <p>Li Zhang*, Zean Han*, Yan Zhong, Qiaojun Yu, Xingyu Wu, Xue Wang, Rujing Wang (*equal contribution)</p>
-        <p class="paper-meta">ACM International Conference on Multimedia (ACM MM), 2024 · Melbourne, Australia · DOI: <a href="https://doi.org/10.1145/3664647.3681131" target="_blank" rel="noopener noreferrer">10.1145/3664647.3681131</a></p>
+        <p>Ruihan Lin, <strong>Zean Han</strong>, Zezhen Ding, and Jiheng Zhang</p>
+        <p class="paper-meta">
+          Major revision, <em>Management Science</em> · arXiv ·
+          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2602.02987</a>
+        </p>
+        <p class="paper-summary">Develops provably efficient scheduling policies for heterogeneous LLM workloads by modeling prefill-decode contention in large GPU clusters.</p>
       </article>
+
+      <p class="papers-subheading">Statistical Learning and Sequential Decision-Making</p>
 
       <article class="paper-item">
         <h3>
@@ -470,8 +489,9 @@
             Direction-Aware Offline-to-Online Learning in Linear Contextual Bandits
           </a>
         </h3>
-        <p>Zean Han, Ruihan Lin, Zezhen Ding, and Jiheng Zhang</p>
+        <p><strong>Zean Han</strong>, Ruihan Lin, Zezhen Ding, and Jiheng Zhang</p>
         <p class="paper-meta">To appear in NeurIPS 2026 · arXiv · <a href="https://arxiv.org/abs/2604.24016" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2604.24016</a></p>
+        <p class="paper-summary">Introduces direction-aware bias control to safely reuse historical data and reduce online exploration when offline and online environments differ.</p>
       </article>
 
       <article class="paper-item">
@@ -480,23 +500,9 @@
             Learning to Price and Stock Under Contextual and Censored Demand
           </a>
         </h3>
-        <p>Zean Han, Zezhen Ding, and Jiheng Zhang</p>
+        <p><strong>Zean Han</strong>, Zezhen Ding, and Jiheng Zhang</p>
         <p class="paper-meta">IJCAI 2026 · DOI: <a href="https://doi.org/10.24963/ijcai.2026/483" target="_blank" rel="noopener noreferrer">10.24963/ijcai.2026/483</a></p>
-      </article>
-
-      <p class="papers-subheading">Working papers</p>
-
-      <article class="paper-item">
-        <h3>
-          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">
-            Large-Scale LLM Inference with Heterogeneous Workloads: Prefill-Decode Contention and Asymptotically Optimal Control
-          </a>
-        </h3>
-        <p>Ruihan Lin, Zean Han, Zezhen Ding, and Jiheng Zhang</p>
-        <p class="paper-meta">
-          Major revision, <em>Management Science</em> · arXiv ·
-          <a href="https://arxiv.org/abs/2602.02987" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2602.02987</a>
-        </p>
+        <p class="paper-summary">Develops an online learning framework for joint pricing and inventory decisions under contextual demand and stockout-censored sales.</p>
       </article>
 
       <article class="paper-item">
@@ -505,11 +511,23 @@
             Nonparametric Contextual Pricing and Inventory Learning under Censored Demand
           </a>
         </h3>
-        <p>Zean Han, Jing Liang, Ruihan Lin, Zezhen Ding, and Jiheng Zhang</p>
+        <p><strong>Zean Han</strong>, Jing Liang, Ruihan Lin, Zezhen Ding, and Jiheng Zhang</p>
         <p class="paper-meta">
           Working paper · arXiv ·
           <a href="https://arxiv.org/abs/2608.30944" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2608.30944</a>
         </p>
+        <p class="paper-summary">Proposes a kernel-based UCB algorithm that learns pricing and stocking policies directly from censored sales without assuming a parametric demand model.</p>
+      </article>
+
+      <p class="papers-subheading">Computer Vision</p>
+
+      <article class="paper-item">
+        <h3>
+          <a href="https://doi.org/10.1145/3664647.3681131" target="_blank" rel="noopener noreferrer">VoCAPTER: Voting-based Pose Tracking for Category-level Articulated Object via Inter-frame Priors</a>
+        </h3>
+        <p>Li Zhang*, <strong>Zean Han*</strong>, Yan Zhong, Qiaojun Yu, Xingyu Wu, Xue Wang, Rujing Wang (*equal contribution)</p>
+        <p class="paper-meta">ACM International Conference on Multimedia (ACM MM), 2024 · Melbourne, Australia · DOI: <a href="https://doi.org/10.1145/3664647.3681131" target="_blank" rel="noopener noreferrer">10.1145/3664647.3681131</a></p>
+        <p class="paper-summary">Tracks articulated-object poses across frames using inter-frame priors and SE(3)-invariant voting, with applications to robotics and embodied AI.</p>
       </article>
 
     </section>
